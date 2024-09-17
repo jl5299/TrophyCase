@@ -70,10 +70,11 @@ def scrape_card_data(url):
             print(f"Debug: Found card name: {card_name}")
         
         psa_prices = {}
-        for grade in [8, 9, 10]:
-            psa_row = soup.find('td', text=f'PSA {grade}')
-            psa_prices[f'psa_{grade}'] = psa_row.find_next_sibling('td').text.strip() if psa_row else 'N/A'
-            print(f"Debug: Found PSA {grade} price: {psa_prices[f'psa_{grade}']}")
+        for grade in ["Ungraded", 'PSA 8', 'PSA 9', 'PSA 10']:
+            print(grade)
+            psa_row = soup.find('td', text=f'{grade}')
+            psa_prices[f'{grade}'] = psa_row.find_next_sibling('td').text.strip() if psa_row else 'N/A'
+            print(f"Debug: Found {grade} price: {psa_prices[f'{grade}']}")
         
         # Find image URLs
         image_urls = []
